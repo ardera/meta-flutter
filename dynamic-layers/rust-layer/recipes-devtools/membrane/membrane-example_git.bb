@@ -8,8 +8,6 @@ LIC_FILES_CHKSUM = "\
 
 DEPENDS += "\
     flutter-sdk-native \
-    compiler-rt \
-    libcxx \
     "
 
 SRCREV = "402133efc123fbf86997118209b3a84007e4000d"
@@ -197,10 +195,6 @@ EXTRA_OECARGO_PATHS += "${WORKDIR}/membrane"
 S = "${WORKDIR}/git"
 
 CARGO_SRC_DIR = "rust_example"
-
-RUNTIME = "llvm"
-TOOLCHAIN = "clang"
-PREFERRED_PROVIDER = "compiler-rt"
 
 inherit cargo
 

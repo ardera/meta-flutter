@@ -11,8 +11,6 @@ LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=39ae29158ce710399736340c60147314"
 
 DEPENDS += "\
-    compiler-rt \
-    libcxx \
     libxkbcommon \
     virtual/egl \
     wayland \
@@ -30,10 +28,6 @@ S = "${WORKDIR}/git"
 inherit cmake features_check pkgconfig 
 
 require conf/include/flutter-runtime.inc
-
-RUNTIME = "llvm"
-TOOLCHAIN = "clang"
-PREFERRED_PROVIDER_libgcc = "compiler-rt"
 
 PACKAGECONFIG ??= "\
     ${@bb.utils.contains('DISTRO_FEATURES', 'vulkan', 'backend-vulkan', 'backend-egl', d)} \

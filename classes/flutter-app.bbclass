@@ -13,17 +13,11 @@ BBCLASSEXTEND = "runtimerelease runtimeprofile runtimedebug"
 DEPENDS += " \
     ca-certificates-native \
     cmake-native \
-    compiler-rt \
     flutter-engine-${@gn_get_flutter_runtime_name(d)} \
     flutter-sdk-native \
-    libcxx \
     ninja-native \
     unzip-native \
     "
-
-RUNTIME = "llvm"
-TOOLCHAIN = "clang"
-PREFERRED_PROVIDER_libgcc = "compiler-rt"
 
 FLUTTER_PREBUILD_CMD ??= ""
 FLUTTER_APPLICATION_PATH ??= "."

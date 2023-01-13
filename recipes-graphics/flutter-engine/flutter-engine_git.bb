@@ -11,8 +11,6 @@ LIC_FILES_CHKSUM = "file://flutter/LICENSE;md5=a60894397335535eb10b54e2fff9f265"
 REQUIRED_DISTRO_FEATURES = "opengl"
 
 DEPENDS += "\
-    compiler-rt \
-    libcxx \
     zip-native \
     "
 
@@ -42,11 +40,6 @@ GN_CUSTOM_VARS ?= '\
     "download_linux_deps": False,   \
 }'
 EXTRA_GN_SYNC ?= "--shallow --no-history -R -D"
-
-# For do_configure, do_compile
-RUNTIME = "llvm"
-TOOLCHAIN = "clang"
-PREFERRED_PROVIDER_libgcc = "compiler-rt"
 
 COMPATIBLE_MACHINE = "(-)"
 COMPATIBLE_MACHINE_aarch64 = "(.*)"
