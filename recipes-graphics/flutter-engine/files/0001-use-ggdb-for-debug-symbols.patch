@@ -1,0 +1,34 @@
+From ae3c5319a7e7f7ea345f7a0eb7574b7d051df1ef Mon Sep 17 00:00:00 2001
+From: Hannes Winkler <hannes.winkler@kdab.com>
+Date: Tue, 13 Sep 2022 10:05:46 +0000
+Subject: [PATCH] use -ggdb for debug symbols
+
+---
+ build/config/compiler/BUILD.gn | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/build/config/compiler/BUILD.gn b/build/config/compiler/BUILD.gn
+index 999c6fb..e256950 100644
+--- a/build/config/compiler/BUILD.gn
++++ b/build/config/compiler/BUILD.gn
+@@ -906,7 +906,7 @@ config("symbols") {
+     }
+     ldflags = [ "/DEBUG" ]
+   } else {
+-    cflags = [ "-g2" ]
++    cflags = [ "-ggdb" ]
+   }
+ }
+ 
+@@ -915,7 +915,7 @@ config("minimal_symbols") {
+     # Linker symbols for backtraces only.
+     ldflags = [ "/DEBUG" ]
+   } else {
+-    cflags = [ "-g1" ]
++    cflags = [ "-ggdb" ]
+   }
+ }
+ 
+-- 
+2.25.1
+

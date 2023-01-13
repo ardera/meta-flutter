@@ -1,0 +1,29 @@
+From 02040cfdb675f1aae8152574c13a286a0430a1f9 Mon Sep 17 00:00:00 2001
+From: Hannes Winkler <hannes.winkler@kdab.com>
+Date: Tue, 13 Sep 2022 09:57:38 +0000
+Subject: [PATCH] enable skia ReduceOpsTaskSplitting feature
+
+---
+ flutter/shell/common/context_options.cc | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
+
+diff --git a/flutter/shell/common/context_options.cc b/flutter/shell/common/context_options.cc
+index 073c9fcb7f..702725c23f 100644
+--- a/flutter/shell/common/context_options.cc
++++ b/flutter/shell/common/context_options.cc
+@@ -27,7 +27,11 @@ GrContextOptions MakeDefaultContextOptions(ContextType type,
+   // TODO(goderbauer): remove option when skbug.com/7523 is fixed.
+   options.fDisableGpuYUVConversion = true;
+ 
+-  options.fReduceOpsTaskSplitting = GrContextOptions::Enable::kNo;
++  // This will make skia reduce the number of framebuffer switches.
++  // i.e. all draw commands for a framebuffer will be emitted before switching
++  // to the next framebuffer. PVRCarbon emits lots of warnings about it otherwise,
++  // though those could be false positives.
++  options.fReduceOpsTaskSplitting = GrContextOptions::Enable::kYes;
+ 
+   options.fReducedShaderVariations = false;
+ 
+-- 
+2.17.1
+

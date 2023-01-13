@@ -1,0 +1,83 @@
+From a002ff872f756f09110e0f811de822f9a225dd9f Mon Sep 17 00:00:00 2001
+From: Hannes Winkler <hanneswinkler2000@web.de>
+Date: Tue, 6 Sep 2022 15:43:49 +0000
+Subject: [PATCH] disable PowerVR Rogue GPU workarounds
+
+---
+ third_party/skia/src/gpu/gl/GrGLCaps.cpp | 18 +++++++++---------
+ 1 file changed, 9 insertions(+), 9 deletions(-)
+
+diff --git a/third_party/skia/src/gpu/gl/GrGLCaps.cpp b/third_party/skia/src/gpu/gl/GrGLCaps.cpp
+index 612f7e9e78..4e4e343c47 100644
+--- a/third_party/skia/src/gpu/gl/GrGLCaps.cpp
++++ b/third_party/skia/src/gpu/gl/GrGLCaps.cpp
+@@ -3774,7 +3774,7 @@ void GrGLCaps::applyDriverCorrectnessWorkarounds(const GrGLContextInfo& ctxInfo,
+     if (ctxInfo.renderer() == GrGLRenderer::kPowerVR54x   ||
+         ctxInfo.renderer() == GrGLRenderer::kPowerVRRogue ||
+         (ctxInfo.renderer() == GrGLRenderer::kAdreno3xx && !ctxInfo.isOverCommandBuffer())) {
+-        fPerformColorClearsAsDraws = true;
++        //fPerformColorClearsAsDraws = true;
+     }
+ #endif
+ 
+@@ -3858,7 +3858,7 @@ void GrGLCaps::applyDriverCorrectnessWorkarounds(const GrGLContextInfo& ctxInfo,
+         // Our Chromebook with GrGLRenderer::kPowerVRRogue crashes on large instanced draws. The
+         // current minimum number of instances observed to crash is somewhere between 2^14 and 2^15.
+         // Keep the number of instances below 1000, just to be safe.
+-        fMaxInstancesPerDrawWithoutCrashing = 999;
++        // fMaxInstancesPerDrawWithoutCrashing = 999;
+     } else if (fDriverBugWorkarounds.disallow_large_instanced_draw) {
+         fMaxInstancesPerDrawWithoutCrashing = 0x4000000;
+     }
+@@ -3873,16 +3873,16 @@ void GrGLCaps::applyDriverCorrectnessWorkarounds(const GrGLContextInfo& ctxInfo,
+         // set some texture state, and it seems like any inividual state works (e.g. min/mag filter,
+         // base level, max level, etc.). Currently we just set the min filter level every time we
+         // bind a texture as the workaround.
+-        fMustSetAnyTexParameterToEnableMipmapping = true;
++        // fMustSetAnyTexParameterToEnableMipmapping = true;
+         // ColorTypeBackendAllocationTest failed for kAlpha_8 and kGray_8 when using
+         // GL_UNPACK_ROW_LENGTH. Perhaps this could be a more limited workaround by applying
+         // only to single channel 8 bit unorm formats but we only have a monolithic query for this
+         // support at present.
+-        fWritePixelsRowBytesSupport = false;
++        // fWritePixelsRowBytesSupport = false;
+         // TransferPixelsToTextureTest fails for all color types on
+         // TecnoSpark 3 Pro with a PowerVR GE8300, GL_VERSION: "OpenGL ES 3.2 build 1.10@51309121"
+         // if GL_UNPACK_ROW_LENGTH is used.
+-        fTransferPixelsToRowBytesSupport = false;
++        // fTransferPixelsToRowBytesSupport = false;
+     }
+ #endif
+ 
+@@ -4188,7 +4188,7 @@ void GrGLCaps::applyDriverCorrectnessWorkarounds(const GrGLContextInfo& ctxInfo,
+     // know when the bug appeared in the driver so for now we disable tessellation path renderer for
+     // all matching gpus regardless of driver version.
+     if (ctxInfo.renderer() == GrGLRenderer::kPowerVRRogue) {
+-        fDisableTessellationPathRenderer = true;
++        // fDisableTessellationPathRenderer = true;
+     }
+ 
+     // http://skbug.com/9739
+@@ -4232,8 +4232,8 @@ void GrGLCaps::applyDriverCorrectnessWorkarounds(const GrGLContextInfo& ctxInfo,
+ 
+     // PowerVRGX6250 drops every pixel if we modify the sample mask while color writes are disabled.
+     if (ctxInfo.renderer() == GrGLRenderer::kPowerVRRogue) {
+-        fNeverDisableColorWrites = true;
+-        shaderCaps->fMustWriteToFragColor = true;
++        // fNeverDisableColorWrites = true;
++        // shaderCaps->fMustWriteToFragColor = true;
+     }
+ 
+     // It appears that Qualcomm drivers don't actually support
+@@ -4375,7 +4375,7 @@ void GrGLCaps::applyDriverCorrectnessWorkarounds(const GrGLContextInfo& ctxInfo,
+     if (ctxInfo.renderer()      == GrGLRenderer::kPowerVRRogue &&
+         ctxInfo.driver()        == GrGLDriver::kImagination    &&
+         ctxInfo.driverVersion() <  GR_GL_DRIVER_VER(1, 16, 0)) {
+-        fShaderCaps->fShaderDerivativeSupport = false;
++        // fShaderCaps->fShaderDerivativeSupport = false;
+     }
+ 
+     if (ctxInfo.driver() == GrGLDriver::kFreedreno) {
+-- 
+2.25.1
+
