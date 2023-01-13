@@ -15,8 +15,6 @@ CVE_PRODUCT = "libflutter_engine.so"
 REQUIRED_DISTRO_FEATURES = "opengl"
 
 DEPENDS += "\
-    compiler-rt \
-    libcxx \
     zip-native \
     ${@bb.utils.contains('DISTRO_FEATURES', 'wayland', 'wayland', '', d)} \
     "
@@ -50,11 +48,6 @@ GN_CUSTOM_VARS ?= '\
     "download_linux_deps": False,   \
 }'
 EXTRA_GN_SYNC ?= "--shallow --no-history -R -D"
-
-# For do_configure, do_compile
-RUNTIME = "llvm"
-TOOLCHAIN = "clang"
-PREFERRED_PROVIDER_libgcc = "compiler-rt"
 
 COMPATIBLE_MACHINE = "(-)"
 COMPATIBLE_MACHINE:aarch64 = "(.*)"

@@ -16,8 +16,6 @@ DEPENDS += "\
 
 DEPENDS:class-native += "\
     flutter-sdk-native \
-    compiler-rt-native \
-    libcxx-native \
     "
 
 SRCREV = "402133efc123fbf86997118209b3a84007e4000d"
@@ -136,10 +134,6 @@ EXTRA_OECARGO_PATHS += "${WORKDIR}/membrane"
 S = "${WORKDIR}/git"
 
 CARGO_SRC_DIR = "rust_example"
-
-RUNTIME:class-native = "llvm"
-TOOLCHAIN:class-native = "clang"
-PREFERRED_PROVIDER_libgcc:class-native = "compiler-rt"
 
 inherit cargo
 
