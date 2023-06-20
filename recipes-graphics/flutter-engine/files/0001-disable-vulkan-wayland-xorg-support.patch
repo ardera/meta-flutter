@@ -1,0 +1,25 @@
+From 3c0ced7dfb3946af758c58e18e39db6d8e9bbf38 Mon Sep 17 00:00:00 2001
+From: Hannes Winkler <hannes.winkler@kdab.com>
+Date: Thu, 15 Dec 2022 00:05:56 +0000
+Subject: [PATCH] disable vulkan wayland & xorg support
+
+---
+ build_overrides/vulkan_headers.gni | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/build_overrides/vulkan_headers.gni b/build_overrides/vulkan_headers.gni
+index 5efa852..bd1868b 100644
+--- a/build_overrides/vulkan_headers.gni
++++ b/build_overrides/vulkan_headers.gni
+@@ -6,6 +6,6 @@
+ # set anything.
+ 
+ if (is_linux) {
+-  vulkan_use_x11 = true
+-  vulkan_use_wayland = true
++  vulkan_use_x11 = false
++  vulkan_use_wayland = false
+ }
+-- 
+2.17.1
+
