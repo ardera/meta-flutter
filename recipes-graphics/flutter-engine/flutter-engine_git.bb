@@ -23,8 +23,7 @@ FLUTTER_ENGINE_PATCHES ?= "\
     file://0001-clang-toolchain.patch \
     file://0001-disable-pre-canned-sysroot.patch \
     file://0001-remove-x11-dependency.patch \
-    file://0001-Disable-x11.patch \
-    file://0001-remove-angle.patch \
+    file://0001-disable-vulkan-wayland-xorg-support.patch \
     "
 
 SRC_URI = "\
