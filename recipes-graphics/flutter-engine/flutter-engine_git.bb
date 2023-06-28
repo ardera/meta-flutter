@@ -62,7 +62,6 @@ PACKAGECONFIG ??= "\
     fontconfig \
     mallinfo2 \
     ${@bb.utils.contains('DISTRO_FEATURES', 'vulkan', 'vulkan impeller-vulkan', '', d)} \
-    impeller-playground \
     "
 
 PACKAGECONFIG[asan] = "--asan"
@@ -77,7 +76,6 @@ PACKAGECONFIG[full-dart-debug] = "--full-dart-debug"
 PACKAGECONFIG[full-dart-sdk] = "--full-dart-sdk"
 PACKAGECONFIG[glfw-shell] = "--build-glfw-shell,--no-build-glfw-shell, glfw"
 PACKAGECONFIG[interpreter] = "--interpreter"
-PACKAGECONFIG[impeller-playground] = "--enable-impeller-playground"
 PACKAGECONFIG[jit_release] = "--runtime-mode jit_release"
 PACKAGECONFIG[lsan] = "--lsan"
 PACKAGECONFIG[mallinfo2] = "--use-mallinfo2"
@@ -85,7 +83,6 @@ PACKAGECONFIG[msan] = "--msan"
 PACKAGECONFIG[prebuilt-dart-sdk] = "--prebuilt-dart-sdk,--no-prebuilt-dart-sdk"
 PACKAGECONFIG[profile] = "--runtime-mode profile"
 PACKAGECONFIG[release] = "--runtime-mode release"
-PACKAGECONFIG[skshaper] = "--enable-skshaper"
 PACKAGECONFIG[static-analyzer] = "--clang-static-analyzer"
 PACKAGECONFIG[tsan] = "--tsan"
 PACKAGECONFIG[trace-gn] = "--trace-gn"
